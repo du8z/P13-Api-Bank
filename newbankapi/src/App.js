@@ -1,19 +1,24 @@
-import img from './img/icon-security.png'
-import Menu from './components/Menu/Menu';
-import MainLayout from './layout/MainLayout';
-import Home from './pages/Home/Home';
-
-
-function App() {
+import img from "./img/icon-security.png";
+import Menu from "./components/Menu/Menu";
+import MainLayout from "./layout/MainLayout";
+import Home from "./pages/Home/Home";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import Welcome from "./redux/Welcome";
+import RequireAuth from "./redux/RequireAuth";
+import Layout from "./components/Layout";
+import UserPage from "./pages/User/User";
+export default function App() {
   return (
-    <div >
-      
-        <MainLayout>
-          <Home/>
-        </MainLayout>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
 
-    </div>
+        <Route element={<RequireAuth />}>
+          <Route path="user" element={<Welcome />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
