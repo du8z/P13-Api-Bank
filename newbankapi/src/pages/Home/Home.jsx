@@ -6,6 +6,7 @@ import SecurityLogo from '../../img/icon-security.png'
 import SignIn from '../../components/SignIn/SignIn'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import MainLayout from '../../layout/MainLayout'
 
 
 
@@ -13,8 +14,8 @@ import { useHistory } from 'react-router-dom'
 export default function Home () {
 
     return (
+      <MainLayout>
         <div>
-    <body>
     <main>
       <div className="hero">
         <section className="hero-content">
@@ -63,7 +64,7 @@ export default function Home () {
     <footer className="footer">
       <p className="footer-text">Copyright 2020 Argent Bank</p>
     </footer>
-  </body>
         </div>
+        </MainLayout>
     )
 }

@@ -1,17 +1,17 @@
 import MainLayout from '../../layout/MainLayout'
 import './User.css'
-
+import React from 'react'
+import { selectCurrentToken, selectCurrentUser } from "../../redux/authSlice"
 
 export default function UserPage () {
 
 
     return (
     <MainLayout>
-    <body>
     
-    <main className="main bg-dark">
+    <main className="main bg-dark" id='bodyUser'>
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+        <h1>Welcome back<br />!</h1>
         <button className="edit-button">Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>
@@ -49,7 +49,6 @@ export default function UserPage () {
     <footer className="footer">
       <p className="footer-text">Copyright 2020 Argent Bank</p>
     </footer>
-  </body>
     </MainLayout>
     )
 }
