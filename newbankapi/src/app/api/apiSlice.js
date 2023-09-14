@@ -5,10 +5,8 @@ import { setCredentials, logOut } from '../../redux/authSlice'
 const baseQuery = fetchBaseQuery ({
     baseUrl: 'http://localhost:3001/api/v1/',
     prepareHeaders: (headers, {getState}) => {
-        console.log(getState());
         const token = getState().auth.token
         console.log('Token from Redux Store:', token)
-        console.log(getState().auth);
         if (token) {
             headers.set('authorization', `Bearer ${token}`)
         }
@@ -23,7 +21,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         console.log('sending refresh token');
 
         const refreshResult = await baseQuery('/refresh', api, extraOptions)
-        console.log(refreshResult)
         if (refreshResult?.data) {
             const user = api.getState.auth.user
             //store new token

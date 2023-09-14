@@ -7,7 +7,8 @@ import Login from "./pages/Login/Login";
 import Welcome from "./redux/Welcome";
 import RequireAuth from "./redux/RequireAuth";
 import Layout from "./components/Layout";
-import UserPage from "./pages/User/User";
+
+
 export default function App() {
   return (
     <Routes>

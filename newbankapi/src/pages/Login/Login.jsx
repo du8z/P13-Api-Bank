@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/authSlice";
 import { useLoginMutation } from "../../redux/authApiSlice";
 import { useRef, useState, useEffect } from "react";
+import { fetchUserInfo } from "../../Actions/userAction";
 
 export default function Login() {
   const userRef = useRef();
@@ -27,19 +28,19 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("oui");
     try {
       const userData = await login({ email, password }).unwrap();
-      console.log(userData.body);
+
+      dispatch(fetchUserInfo(userData.body.token))
       dispatch(setCredentials({ ...userData.body, email }));
-      console.log({ ...userData.body, email });
+
       setEmail("");
       setPassword("");
-      console.log("non");
       navigate("/user");
     } catch (err) {}
   };
 
+  
   const handleUserInput = (e) => setEmail(e.target.value);
 
   const handlePwdInput = (e) => setPassword(e.target.value);
