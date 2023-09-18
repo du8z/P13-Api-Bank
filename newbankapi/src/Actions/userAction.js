@@ -1,6 +1,35 @@
+import { produce } from 'immer';
+import { setUser } from '../redux/authSlice';
+const FETCHING = 'user/fetching'
+const RESOLVED = 'user/resolved'
+const REJECTED = 'user/rejected'
+
 export const FETCH_USER_INFO_REQUEST = 'FETCH_USER_INFO_REQUEST';
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS';
 export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE';
+
+const userResolved = (data) => ({type: RESOLVED, payload: data})
+const userFetching = () => ({ type: FETCHING });
+const userRejected = (error) => ({ type: REJECTED, payload: error });
+
+const userInfoResolved = (data) => ({ type: FETCH_USER_INFO_SUCCESS, payload: data });
+
+export default async function fetchOrUpdateUser(store) {
+  const status = store.getState().user.status
+  if (status === 'pending' || 'updating') {
+    return;
+  }
+
+  store.dispatch()
+
+}
+
+
+
+
+
+
+
 
 export const fetchUserInfo = (token) => async (dispatch) => {
     dispatch({ type: FETCH_USER_INFO_REQUEST });
@@ -25,6 +54,9 @@ export const fetchUserInfo = (token) => async (dispatch) => {
           type: FETCH_USER_INFO_SUCCESS,
           payload: data,
         });
+        dispatch(userResolved(data.body))
+        dispatch(setUser(data.body))
+        
       }
   
 
@@ -37,3 +69,64 @@ export const fetchUserInfo = (token) => async (dispatch) => {
   };
 
   
+
+// const initialState = {
+//   status: 'void',
+//   data: null, 
+//   error: null, 
+// }
+
+
+// const FETCHING = 'user/fetching'
+// const REJECTED = 'user/rejected'
+
+
+// const userFetching = () => ({type: FETCHING})
+
+
+// const userRejected = (error) => ({type: REJECTED, payload: error})
+
+
+// export default function userReducer(state = initialState, action) {
+
+//   return produce(state, draft => {
+//       switch (action.type) {
+//         case FETCHING: {
+//           if (draft.status === 'void') {
+//             draft.status = 'pending'
+//             return;
+//           }
+//           if (draft.status === 'rejected') {
+//             // draft.error === null
+//             draft.status = 'pending'
+//             return
+//           }
+//           if (draft.status === 'resolved') {
+//             draft.status = 'updating'
+//             return
+//           }
+//           return
+//         }
+//         case RESOLVED : {
+//           if (draft.status === 'pending'|| draft.status === 'updating' ) {
+//             draft.data = action.payload
+//             draft.status = 'resolved'
+//             return
+//           }
+//           return;
+//         }
+//         case REJECTED : {
+//           if (draft.status === 'pending' || draft.status === 'updating') {
+//             draft.error = action.payload
+//             draft.data = null
+//             draft.status = 'rejected'
+//             return
+//           }
+//           return
+//         }
+//         default:
+//           return
+//       }
+//     })
+// }
+

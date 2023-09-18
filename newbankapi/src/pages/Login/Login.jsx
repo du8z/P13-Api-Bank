@@ -9,7 +9,6 @@ import { fetchUserInfo } from "../../Actions/userAction";
 
 export default function Login() {
   const userRef = useRef();
-  const errRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -30,7 +29,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const userData = await login({ email, password }).unwrap();
-
+      console.log({ ...userData.body, email });
       dispatch(fetchUserInfo(userData.body.token))
       dispatch(setCredentials({ ...userData.body, email }));
 

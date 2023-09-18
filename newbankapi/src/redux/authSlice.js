@@ -21,11 +21,14 @@ const authSlice = createSlice({
             state.user = user
             state.token = token
 
-        }
+        },
+        setUser: (state, action) => {
+            state.user = action.payload;
+        },
     }
 })
 
-export const {setCredentials, logOut} = authSlice.actions
+export const {setCredentials, logOut, setUser } = authSlice.actions
 
 export const logoutUser = () => async (dispatch) => {
     try {
@@ -35,23 +38,6 @@ export const logoutUser = () => async (dispatch) => {
     console.log('Erreur lors de la déconnexion :', err);
     }
 } 
-
-// export const userInfosRequest = () => async (dispatch) => {
-//     try {
-//         const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-//         method: 'POST', 
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           'Content-Type': 'application/json',
-
-//         },
-//       });
-//             dispatch(userInformation())
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
-
 
 
 export default authSlice.reducer
