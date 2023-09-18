@@ -43,13 +43,10 @@ export const fetchUserInfo = (token) => async (dispatch) => {
         },
         
       });
-  
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       } else {
         const data = await response.json();
-      
-        console.log(data);
         dispatch({
           type: FETCH_USER_INFO_SUCCESS,
           payload: data,

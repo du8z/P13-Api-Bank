@@ -1,17 +1,19 @@
 import MainLayout from '../../layout/MainLayout'
 import './User.css'
 import React from 'react'
+import { useDispatch, useSelector, useStore } from "react-redux"
 import { selectCurrentToken, selectCurrentUser } from "../../redux/authSlice"
 
 export default function UserPage () {
-
-
+  const store = useStore()
+  const users = store.getState().auth.user
+  console.log(users);
     return (
     <MainLayout>
     
     <main className="main bg-dark" id='bodyUser'>
       <div className="header">
-        <h1>Welcome back<br />!</h1>
+        <h1>Welcome back<br />{users.firstName} {users.lastName} !</h1>
         <button className="edit-button">Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>

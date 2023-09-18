@@ -9,7 +9,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USER_INFO_SUCCESS:
       return {
-        ...state,
+        // ...state,
         user: action.payload, 
         error: null,
       };

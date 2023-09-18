@@ -1,43 +1,61 @@
-import { useDispatch, useSelector, useStore } from "react-redux"
-import { selectCurrentToken, selectCurrentUser,} from "./authSlice"
-import { Link } from "react-router-dom"
-import MainLayout from "../layout/MainLayout"
-import UserProfile from "../components/UserProfile/UserProfile"
-import React, { useEffect, useState } from 'react';
-import { fetchUserInfo } from "../Actions/userAction"
-import { FETCH_USER_INFO_SUCCESS } from "../Actions/userAction"
-import { apiSlice } from "../app/api/apiSlice"
-
-
+import { useStore } from "react-redux";
+import MainLayout from "../layout/MainLayout";
+import React, { useEffect, useState } from "react";
+import { fetchUserInfo } from "../Actions/userAction";
+import { useSelector } from "react-redux";
 const Welcome = () => {
-    const store = useStore()
-    const dispatch = useDispatch();
-    const user = useSelector(selectCurrentUser)
-    const token = useSelector(selectCurrentToken)
-   
-      const users = store.getState().auth.user
-      console.log(users);
-    
-
-
-
-    const Welcome = user ? `Welcome ${user} !` : 'Welcome'
-    const tokenAbbr = `${token.slice(0,9)}...`
-    const content = (
-        <MainLayout>
-        <section className="welcome">
-            <h1>Welcome {user.firstName} {user.lastName}</h1>
-            <p>Token : {tokenAbbr} </p>
-            <p>first Name : </p>
+  const store = useStore();
+  const userData = useSelector((state) => state.auth.user)
+  
+  const content = (
+    <MainLayout>
+      <main className="main bg-dark" id="bodyUser">
+        <div className="header">
+          <h1>
+            Welcome back
+            <br />
+            {userData ? `${userData.firstName} ${userData.lastName} !` : "Loading..."} 
+          </h1>
+          <button className="edit-button">Edit Name</button>
+        </div>
+        <h2 className="sr-only">Accounts</h2>
+        <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">Argent Bank Checking (x8349)</h3>
+            <p className="account-amount">$2,082.79</p>
+            <p className="account-amount-description">Available Balance</p>
+          </div>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
+          </div>
         </section>
-        {/* <UserProfile/> */}
-        </MainLayout>
-    )
-    return content
-}
-export default Welcome
+        <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
+            <p className="account-amount">$10,928.42</p>
+            <p className="account-amount-description">Available Balance</p>
+          </div>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
+          </div>
+        </section>
+        <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
+            <p className="account-amount">$184.30</p>
+            <p className="account-amount-description">Current Balance</p>
+          </div>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
+          </div>
+        </section>
+      </main>
+      <footer className="footer">
+        <p className="footer-text">Copyright 2020 Argent Bank</p>
+      </footer>
+    </MainLayout>
+  );
+  return content;
+};
 
-
-
-
-
+export default Welcome;

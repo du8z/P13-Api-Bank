@@ -4,7 +4,6 @@ import { selectCurrentToken } from "./authSlice";
 
 const RequireAuth = () => {
     const token = useSelector(selectCurrentToken)
-    console.log(token);
     const location = useLocation()
 
     return (
