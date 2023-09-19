@@ -77,8 +77,6 @@ export default function Login() {
                 <input type="checkbox" id="remember-me" />
                 <label htmlFor="remember-me">Remember me</label>
               </div>
-              {/* <a href="./user.html" className="sign-in-button">Sign In</a> */}
-              {/* <button className="sign-in-button">Sign In</button> */}
               <button className="sign-in-button">Sign In</button>
             </form>
           </section>

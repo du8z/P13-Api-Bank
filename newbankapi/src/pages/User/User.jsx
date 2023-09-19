@@ -1,8 +1,7 @@
 import MainLayout from '../../layout/MainLayout'
 import './User.css'
 import React from 'react'
-import { useDispatch, useSelector, useStore } from "react-redux"
-import { selectCurrentToken, selectCurrentUser } from "../../redux/authSlice"
+import {  useStore } from "react-redux"
 
 export default function UserPage () {
   const store = useStore()

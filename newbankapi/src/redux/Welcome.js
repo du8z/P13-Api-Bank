@@ -1,22 +1,19 @@
-import { useStore } from "react-redux";
 import MainLayout from "../layout/MainLayout";
-import React, { useEffect, useState } from "react";
-import { fetchUserInfo } from "../Actions/userAction";
+import React from "react";
 import { useSelector } from "react-redux";
+import UpdateForm from "../components/FormChangeInfos/FormChangeInfos";
+import FormChangeName from "../components/FormChangeInfos/FormChangeInfos";
+
+
+
 const Welcome = () => {
-  const store = useStore();
-  const userData = useSelector((state) => state.auth.user)
   
   const content = (
     <MainLayout>
       <main className="main bg-dark" id="bodyUser">
         <div className="header">
-          <h1>
-            Welcome back
-            <br />
-            {userData ? `${userData.firstName} ${userData.lastName} !` : "Loading..."} 
-          </h1>
-          <button className="edit-button">Edit Name</button>
+
+          <FormChangeName/>
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

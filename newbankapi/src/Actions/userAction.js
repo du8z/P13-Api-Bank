@@ -14,6 +14,9 @@ const userRejected = (error) => ({ type: REJECTED, payload: error });
 
 const userInfoResolved = (data) => ({ type: FETCH_USER_INFO_SUCCESS, payload: data });
 
+
+
+
 export default async function fetchOrUpdateUser(store) {
   const status = store.getState().user.status
   if (status === 'pending' || 'updating') {
@@ -65,6 +68,41 @@ export const fetchUserInfo = (token) => async (dispatch) => {
     }
   };
 
+
+  export const changehUserInfo = (token) => async (dispatch) => {
+    // dispatch({ type: CHANGE_USER_INFO });
+    
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'PUT', 
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: {"firstName": "string", "lastName" : "string"},
+        
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      } else {
+        const data = await response.json();
+        dispatch({
+          type: FETCH_USER_INFO_SUCCESS,
+          payload: data,
+        });
+        dispatch(userResolved(data.body))
+        dispatch(setUser(data.body))
+        
+      }
+  
+
+    } catch (error) {
+      dispatch({
+        type: FETCH_USER_INFO_FAILURE,
+        payload: error.message,
+      });
+    }
+  };
   
 
 // const initialState = {

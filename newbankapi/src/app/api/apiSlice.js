@@ -6,7 +6,6 @@ const baseQuery = fetchBaseQuery ({
     baseUrl: 'http://localhost:3001/api/v1/',
     prepareHeaders: (headers, {getState}) => {
         const token = getState().auth.token
-        console.log('Token from Redux Store:', token)
         if (token) {
             headers.set('authorization', `Bearer ${token}`)
         }
