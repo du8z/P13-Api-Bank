@@ -16,19 +16,19 @@ const authSlice = createSlice({
             state.user = null
             state.token = null
         },
-        userInformation: (state, action) => {
-            const {user, token} = action.payload
-            state.user = user
-            state.token = token
 
-        },
         setUser: (state, action) => {
             state.user = action.payload;
         },
+        updateNameData: (state, action) => {
+            const {firstName, lastName} = action.payload
+            state.user.firstName = firstName
+            state.user.lastName = lastName
+        }
     }
 })
 
-export const {setCredentials, logOut, setUser } = authSlice.actions
+export const {setCredentials, logOut, setUser, updateNameData } = authSlice.actions
 
 export const logoutUser = () => async (dispatch) => {
     try {
