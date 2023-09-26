@@ -1,13 +1,9 @@
-import img from "./img/icon-security.png";
-import Menu from "./components/Menu/Menu";
-import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home/Home";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Welcome from "./redux/Welcome";
 import RequireAuth from "./redux/RequireAuth";
 import Layout from "./components/Layout";
-import UserPage from "./pages/User/User";
 
 export default function App() {
   return (

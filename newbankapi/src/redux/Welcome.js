@@ -1,7 +1,5 @@
 import MainLayout from "../layout/MainLayout";
 import React from "react";
-import { useSelector } from "react-redux";
-import UpdateForm from "../components/FormChangeInfos/FormChangeInfos";
 import FormChangeName from "../components/FormChangeInfos/FormChangeInfos";
 
 
