@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import { updateData } from "../../Actions/changeUserInfos";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUser, updateNameData } from "../../redux/authSlice";
-
+import './FormChangeInfos.css'
 export default function FormChangeName() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -20,10 +19,7 @@ export default function FormChangeName() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const data = `{
-      //   "firstName": "${firstName}",
-      //   "lastName": "${lastName}"
-      // }`;
+
       const jsonData = `{"firstName": "${firstName}", "lastName": "${lastName}"}`
 
       await dispatch(updateData(token, jsonData));
@@ -35,28 +31,27 @@ export default function FormChangeName() {
       await dispatch(setUser(updatedData));
 
 
-      // Définir l'état refreshComponent à true pour actualiser la partie du composant
       setFirstName("");
       setLastName("");
     
-      // return 
       
     } catch (err) {}
   };
   return (
-    <div>
+    <div >
       <h1>
         Welcome back
         <br />
         {userData.firstName} {userData.lastName} !
       </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="changeInfos" >
         <input
           type="text"
           name="firstName"
           value={firstName}
           onChange={handleFirstnameInput}
           placeholder="Prénom"
+          className="sign-in-button button"
         />
         <input
           type="text"
@@ -64,8 +59,9 @@ export default function FormChangeName() {
           value={lastName}
           onChange={handleLastNameInput}
           placeholder="Nom"
+          className="sign-in-button button"
         />
-        <button type="submit">Mettre à jour</button>
+        <button type="submit" className="sign-in-button buttonValid" >Mettre à jour</button>
       </form>
     </div>
   );

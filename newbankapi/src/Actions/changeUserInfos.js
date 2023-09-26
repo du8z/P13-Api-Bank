@@ -14,11 +14,9 @@ export const updateData = (token, data) => {
         throw new Error("Échec de la mise à jour des données");
       }
 
-      // Dispatchez une action Redux pour mettre à jour l'état global si nécessaire
       dispatch({ type: "UPDATE_DATA_SUCCESS", payload: data });
     } catch (error) {
       console.error(error);
-      // Dispatchez une action Redux pour gérer les erreurs si nécessaire
       dispatch({ type: "UPDATE_DATA_FAILURE", payload: error.message });
     }
   };
