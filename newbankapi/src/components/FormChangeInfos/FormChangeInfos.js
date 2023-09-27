@@ -39,7 +39,7 @@ export default function FormChangeName() {
   };
   return (
     <div >
-      <h1>
+      <h1 style={{ margin: 0 }} >
         Welcome back
         <br />
         {userData.firstName} {userData.lastName} !

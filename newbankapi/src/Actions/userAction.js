@@ -16,7 +16,6 @@ const userInfoResolved = (data) => ({ type: FETCH_USER_INFO_SUCCESS, payload: da
 
 
 
-
 export default async function fetchOrUpdateUser(store) {
   const status = store.getState().user.status
   if (status === 'pending' || 'updating') {
@@ -26,13 +25,6 @@ export default async function fetchOrUpdateUser(store) {
   store.dispatch()
 
 }
-
-
-
-
-
-
-
 
 export const fetchUserInfo = (token) => async (dispatch) => {
     dispatch({ type: FETCH_USER_INFO_REQUEST });

@@ -8,7 +8,7 @@ const Welcome = () => {
   
   const content = (
     <MainLayout>
-      <main className="main bg-dark" id="bodyUser">
+      <main className="main bg-dark" id="bodyUser" style={{paddingBottom: '15px'}}>
         <div className="header">
 
           <FormChangeName/>
